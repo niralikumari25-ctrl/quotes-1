@@ -1,0 +1,271 @@
+/* ===== Professional Quote of the Day UI ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #4f46e5;
+    --primary-dark: #3730a3;
+    --background: #f4f6fb;
+    --surface: #ffffff;
+    --text: #172033;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --accent: #eef2ff;
+    --shadow: 0 20px 55px rgba(30, 41, 59, 0.10);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 25px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top left, #e0e7ff 0, transparent 35%),
+        radial-gradient(circle at bottom right, #ede9fe 0, transparent 35%),
+        var(--background);
+}
+
+/* Previous button */
+.prev-btn {
+    align-self: flex-start;
+    padding: 11px 18px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.prev-btn:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* Main container */
+.container {
+    width: 100%;
+    max-width: 680px;
+    margin: auto;
+}
+
+/* Quote card */
+.card {
+    position: relative;
+    overflow: hidden;
+    padding: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: var(--shadow);
+    animation: cardEnter 0.6s ease both;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #4f46e5, #8b5cf6, #a78bfa);
+}
+
+#title {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--text);
+}
+
+#title::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 4px;
+    margin: 13px auto 0;
+    border-radius: 10px;
+    background: var(--primary);
+}
+
+/* Quote display */
+.quote-box {
+    position: relative;
+    padding: 30px 25px;
+    border: 1px solid #e0e7ff;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #f8faff, #f3f0ff);
+    text-align: center;
+}
+
+.quote-box::before {
+    content: "“";
+    display: block;
+    height: 42px;
+    color: var(--primary);
+    font-family: Georgia, serif;
+    font-size: 70px;
+    line-height: 1;
+}
+
+#quote_show {
+    margin: 12px 0 22px;
+    font-size: clamp(17px, 2.5vw, 21px);
+    line-height: 1.8;
+    font-weight: 500;
+    color: #273449;
+    overflow-wrap: anywhere;
+}
+
+.quote_type {
+    display: inline-block;
+    padding: 7px 15px;
+    border: 1px solid #ddd6fe;
+    border-radius: 30px;
+    background: #ede9fe;
+    color: var(--primary-dark);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Dropdown section */
+.details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+}
+
+.quote_type_details,
+.quote_lang {
+    min-width: 0;
+}
+
+.details select {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    outline: none;
+    background-color: var(--surface);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.details select:hover {
+    border-color: #a5b4fc;
+}
+
+.details select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+}
+
+/* Quotes button */
+.btn {
+    margin-top: 25px;
+}
+
+#next {
+    width: 100%;
+    min-height: 50px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 11px;
+    background: linear-gradient(135deg, var(--primary), #7c3aed);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(79, 70, 229, 0.22);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#next:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(79, 70, 229, 0.30);
+}
+
+#next:active {
+    transform: translateY(0);
+}
+
+button:focus-visible {
+    outline: 3px solid #a5b4fc;
+    outline-offset: 3px;
+}
+
+/* Entry animation */
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+    body {
+        padding: 20px 14px;
+        gap: 18px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .card {
+        padding: 28px 20px;
+        border-radius: 18px;
+    }
+
+    #title {
+        margin-bottom: 24px;
+    }
+
+    .quote-box {
+        padding: 24px 17px;
+    }
+
+    .details {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
